@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String JSON_URL =
             "http://560057.youcanlearnit.net/services/json/itemsfeed.php";
+    private static final String XML_URL =
+            "http://560057.youcanlearnit.net/services/xml/itemsfeed.php";
 
     private boolean networkOk;
     TextView output;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (networkOk) {
             Intent intent = new Intent(this, MyService.class);
-            intent.setData(Uri.parse(JSON_URL));
+            intent.setData(Uri.parse(XML_URL));
             startService(intent);
         } else {
             Toast.makeText(this, "Network not available!", Toast.LENGTH_SHORT).show();

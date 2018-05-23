@@ -7,6 +7,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.example.android.restful.model.DataItem;
+import com.example.android.restful.parsers.MyXMLParser;
 import com.example.android.restful.utils.HttpHelper;
 import com.google.gson.Gson;
 
@@ -34,9 +35,11 @@ public class MyService extends IntentService {
             e.printStackTrace();
             return;
         }
+//
+//        Gson gson = new Gson();
+//        DataItem[] dataItems = gson.fromJson(response, DataItem[].class);
 
-        Gson gson = new Gson();
-        DataItem[] dataItems = gson.fromJson(response, DataItem[].class);
+        DataItem[] dataItems = MyXMLParser.parseFeed(response);
 
         Intent messageIntent = new Intent(MY_SERVICE_MESSAGE);
         messageIntent.putExtra(MY_SERVICE_PAYLOAD, dataItems);
